@@ -1,0 +1,26 @@
+Lines of code
+
+Vulnerability details
+##Impact
+
+Anyone can cancel orders from the router and get the tokens
+
+##Proof of concept
+-A user makes a WETH order from the router
+
+https://github.com/Dar-Sub/Audit-Findings/blob/main/Audit%201/Rubicon.sol
+
+-Any attacker can call the cancel function with the order ID and get all the unfilled funds from the order
+
+https://github.com/Dar-Sub/Audit-Findings/blob/main/Audit%201/RubiconRouter%202.sol
+
+Basically orders in the router are up for grabs to the first who cancels then since the orders are made in name of the router, not the user msg.sender in cancelation will be the router.
+
+Recommended Mitigation Steps:
+
+1. Add a require check that only the user who created the order can cancel it will solve the issue.
+
+
+How can you find these bugs?
+
+1Have a special look for all user-controlled parameters in critical functions like withdrawing, canceling, and changing orders.
