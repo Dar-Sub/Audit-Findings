@@ -25,3 +25,5 @@ As a fix to Vulnerability, Polygon removed the transferWithSig function.
 
 ⚡How can you find these bugs?
 Look for ecrecover check returned value. Also, check a flow for user-controlled input.
+
+https://medium.com/immunefi/polygon-lack-of-balance-check-bugfix-postmortem-2-2m-bounty-64ec66c24c7d
