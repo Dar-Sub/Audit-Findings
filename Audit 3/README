@@ -1,0 +1,27 @@
+🔎 Audit Finding: Unchecked Return Value from "ecrecover"
+🎯 Project Name: Polygon
+🔥 Severity: Critical
+🛡️ Vulnerability Disclosed by: @leonspacewalker at @immunefi
+💰 Reward: $2.2 Million + $1.2 Million
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 The vulnerability lies within the transferWithSig() function of MRC20 contract. This function uses ecrecover for signature verification. In the Solidity documentation, it says it will “return zero on error”. So, if it had an issue, it would return 0.
+
+
+📌 The _transferFrom will call the _transfer function directly without checking whether the "from" has enough balance. And we can call the transferWithSig() without a valid signature, thanks to the lack of a check to see if "ecrecovery" returns the zero address.
+
+
+📌 This means that someone could send an invalid signature, which would result in a zero address returned from "ecrecovery", and the MRC20 contract would send them tokens without a lack of checking for "from" balance.
+
+
+
+💡Recommended Mitigation Steps:
+As a fix to Vulnerability, Polygon removed the transferWithSig function.
+
+
+⚡How can you find these bugs?
+Look for ecrecover check returned value. Also, check a flow for user-controlled input.
