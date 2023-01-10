@@ -1,0 +1,20 @@
+🔎 Audit Finding: Use safeCast for changing types
+🎯 Project Name: Notional Coop
+🔥 Severity: Medium
+🛡️ Auditor: @ridwan
+
+Let's Start 👇👇
+
+🐞 The Vulnerability:
+
+📌 In the NotionalTradeModule contract, the _mint function takes an argument "_fCashAmount" of type uint256. Now, in the function, the value of _fCashAmount is downcasted to uint88.
+
+📌SafeMath and Solidity 0.8.* handles overflows for basic math operations but not for casting.
+
+📌 If value that is greater than uint88 is passed for "_fCashAmount" into the _mint function, downcasting it to uint88 will silently overflow.
+
+💡Recommended Mitigation Steps:
+Consider using OpenZeppelin's SafeCast library to prevent unexpected overflows when casting from uint256.
+
+⚡How can you look for these types of bugs?
+Check if the contract uses safeCast Library for downcasting or not. If not check if the parameter is user controlled.
