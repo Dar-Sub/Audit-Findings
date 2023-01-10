@@ -1,0 +1,32 @@
+Audit Finding: Double transfer in the `transferAndCall` function.
+🎯 Project Name: Behodler
+🔥 Severity: High
+🛡️ Auditor: @Ridwan
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 The transferAndCall function of ERC677 was incorrect. Instead of a single transfer, the function was performing transferring twice.
+📌 We can see that both super.transfer(_to, _value); and _transfer(msg.sender, _to, _value); are doing the same thing - transfering _value of tokens from msg.sender to _to.
+
+
+💡Recommended Mitigation Steps
+Removing any of the methods of transfer from transferAndCall function will mitigate the vulnerability.
+
+
+// PROOF OF CONCEPT
+
+function transferAndCall(
+    address _to,
+    uint256 _value,
+    bytes memory _data
+) public returns (bool success) {
+    super.transfer(_to, _value);
+    _transfer(msg.sender, _to, _value);
+    if (isContract(_to)) {
+        contractFallback(_to, _value, _data);
+    }
+    return true;
+}
