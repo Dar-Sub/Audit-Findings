@@ -1,0 +1,22 @@
+https://code4rena.com/reports/2022-10-zksync/#m-02-block_period-is-incorrect
+
+🔎 Audit Finding: BLOCK_PERIOD is incorrectly hardcoded.
+🎯 Project Name: zkSync
+🔥 Severity: Medium
+🛡️ Auditor: Code4rena
+
+Let's Start 👇👇Ethereum
+
+
+🐞 The Vulnerability:
+
+📌 In config.sol of zkSync contracts, The BLOCK_PERIOD is set to 13 seconds in Config.sol.
+
+📌Ethereum Since moving to Proof-of-Stake (PoS) after the Merge, block times on ethereum are fixed at 12 seconds per block (slots).
+
+📌 This results in an incorrect calculation of PRIORITY_EXPIRATION which is used to determine when a transaction in the priority Queue should be considered expired.
+
+📌 By using a block time of 13 sec, a txn in the Priority Queue expires 5.5 hours earlier than expected.
+
+💡Recommended Mitigation Steps:
+Change the block period to 12 seconds
