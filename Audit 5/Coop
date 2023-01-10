@@ -19,3 +19,16 @@ Consider using OpenZeppelin's SafeCast library to prevent unexpected overflows w
 ⚡How can you look for these types of bugs?
 Check if the contract uses safeCast Library for downcasting or not. If not check if the parameter is user controlled.
 
+
+// Bug
+  526:             uint88(_fCashAmount),
+
+  118:         return uint8(marketIndex);
+  
+  
+  //Solution
+  function _safeUint88(uint256 x) internal pure returns (uint88) {
+         require(x <= uint256(type(uint88).max));
+       return uint88(x);
+     }
+  
