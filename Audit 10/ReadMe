@@ -1,0 +1,23 @@
+🔎 Audit Finding: Sandwich attack due to hardcoded slippage
+🎯 Project Name: Sandclock
+🔥 Severity: High
+🛡️ Auditor: @Code4rena
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+✅ The _swapUstToUnderlying function is used to swap Ust to underlying tokens. The argument exchange_underlying specifies the minimum number of underlying to be returned from the swap.
+
+✅ Currently, this value is set to 0, so the function is subject to a sandwich attack. Check out the below link if you don't know what is sandwich attack.
+https://lnkd.in/dEAQf-Uv
+
+✅ Specifically, an attacker can watch for transactions that call _swapUstToUnderlying, and then (using flashbots) execute a sandwich attack to manipulate the price of the underlying/Ust pair before and after the swap.
+
+
+💡Recommended Mitigation Steps:
+Add a slippage argument to the functions instead of hard-coded 0.
+
+⚡How can you look for these types of bugs?
+Whenever there is a function for swapping tokens, look if the slippage value is hardcoded to zero or any other number.
