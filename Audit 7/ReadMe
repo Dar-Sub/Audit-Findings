@@ -1,0 +1,22 @@
+🔎 Audit Finding: Insufficient validation of Chainlink Oracle data feed
+🎯 Project Name: Sentiment
+🔥 Severity: Medium
+🛡️ Auditor: Sherlock
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 When fetching prices from latestRoundData, there is not enough validation that ensures the price returned is not stale.
+
+📌 The getPrice function fetches oracle price from Chainlink using latestRoundData, there only exists one check to make sure the reported price is not a negative value
+
+📌 As prices can never be a negative value, this check is not needed. Instead, there should be sufficient checks to make sure Chainlink's reported price feed is fresh and not stale.
+
+
+💡Recommended Mitigation Steps:
+Validate data feed by:
+> Checking the returned answer is not 0.
+> Verify result is within an allowed margin of freshness by checking updatedAt.
+> Verify answer is indeed for the last known round.
