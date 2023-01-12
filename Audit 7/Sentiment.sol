@@ -63,3 +63,23 @@ function getEthPrice() internal view returns (uint) {
 
         return uint(answer);
     }
+    
+    
+    // Recommendation
+Validate data feed by:
+
+Checking the returned answer is not 0.
+Verify result is within an allowed margin of freshness by checking updatedAt.
+Verify answer is indeed for the last known round.
+
+
+function getEthPrice() internal view returns (uint) {
+        (uint80 ethRoundID, int answer,, uint256 ethUpdatedAt, uint80 ethAnsweredinRound) =
+            ethUsdPriceFeed.latestRoundData();
+        require(ethUpdatedAt > block.timestamp - 3600, "ETH: Stale price");
+        require(ethAnsweredinRound == ethRoundID , "ETH: Answer is not for last known round!");
+        if (answer <= 0)
+            revert Errors.NegativePrice(address(0), address(ethUsdPriceFeed));
+
+        return uint(answer);
+    }
