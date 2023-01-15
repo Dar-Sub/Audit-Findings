@@ -1,0 +1,24 @@
+🔎 Audit Finding: Initialize function can be invoked multiple times.
+🎯 Project Name: The Graph
+🔥 Severity: Medium
+🛡️ Auditor: @Code4rena
+
+Let's Start 👇👇
+
+
+
+🐞 The Vulnerability:
+
+📌 The implementation contract can initialize the _controller address multiple times on Managed contract even though it should only be allowed once.
+
+📌 This means a compromised implementation can reinitialize the contract above and become the owner to complete the privilege escalation then drain the user's fund.
+
+
+💡Recommended Mitigation Steps:
+Use the initializer modifier to protect the function from being reinitiated
+
+⚡How can you look for these types of bugs?
+Always check if initialize function has initializer modifier to prevent function from being called more than once.
+
+📚Reference:
+https://lnkd.in/dPUpugZn
