@@ -1,0 +1,22 @@
+🔎 Audit Finding: A Typo leading to a locking of Funds
+🎯 Project Name: Insure
+🔥 Severity: High
+🛡️ Auditor: @Code4rena
+
+Let's Start 👇👇
+
+🐞 The Vulnerability:
+
+📌 In Solidity, "==" checks if the value of two operands are equal or not. And "=" is used to set a certain value to variables.
+
+📌 In PoolTemplate Contract, The unlock() function has a typo where it uses "==" rather than "=". So, instead of setting the insurances[_id].status to false, it compares it to false.
+
+📌 Now, If a user calls unlock() multiple times, insurances[_id].amount will be subtracted multiple times. It will result in 'lockedAmount' being way smaller.
+
+
+💡Recommended Mitigation Steps:
+Change "insurances[_id].status == false;" to "insurances[_id].status = false;"
+
+
+📚Reference:
+https://lnkd.in/ddG3Vu4U
