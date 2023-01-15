@@ -1,0 +1,23 @@
+🔎 Audit Finding: Centralisation RIsk: Owner Of RoyaltyVault Can Take All Funds
+🎯 Project Name: Joyn
+🔥 Severity: High
+🛡️ Auditor: @Code4rena
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 The owner of RoyaltyVault can set _platformFee to any arbitrary value (e.g. 100% = 10000) as there exists no upper limit for setting fees.
+
+📌 When the owner changes fees, that share of the contracts balance and future balances will be set to the platformFeeRecipient (which is in the owner's control) rather than the splitter contract.
+
+📌 As a result the owner can steal the entire contract balance and any future balances avoiding the splitter.
+
+
+💡Recommended Mitigation Steps:
+This issue may be mitigated by adding a maximum value for the _platformFee. For example 5% or 10%.
+The Protocol acknowledged the issue and fixed it.
+
+📚Reference:
+https://lnkd.in/d2h_dAca
