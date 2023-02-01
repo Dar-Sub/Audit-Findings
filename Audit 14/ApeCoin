@@ -1,0 +1,22 @@
+🔎 Vulnerability Details: Incorrect airdrop calculation
+🎯 Project Name: ApeCoin
+🔥 Severity: Critical
+🛡️ Amount Lost: $1.1 Million
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 The underlying cause was that the getClaimableTokenAmountAndGammaToClaim() function determines the amount of ApeCoin to claim based on the number of NFT the caller owns. It doesn’t consider how long the caller owns those NFTs.
+
+📌 The attacker took a flash loan and borrowed BAYC tokens that can be redeemed for NFTs, and then use these NFTs to claim the AirDrop.
+
+📌 The attacker then minted the BAYC tokens using the BAYC NFTs to return the flash loan. The Attacker stole around $1.1M from the hack.
+
+
+💡Recommended Mitigation Steps:
+The attack could have been avoided if the airdrop calculation had taken into consideration how long a person had to own the NFT before claiming the reward.
+
+📚Reference:
+https://lnkd.in/dmtKeF99
