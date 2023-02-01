@@ -1,0 +1,24 @@
+🔎 Audit Finding: Tokens with more than 18 decimal points will cause issues
+🎯 Project Name: DeFi Saver
+🔥 Severity: Medium
+🛡️ Auditor: Consensys
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+✅📌 It is assumed that the maximum number of decimals for each token is 18. However uncommon, it is possible to have tokens with more than 18 decimals, for example, YAMv2 has 24 decimals.
+
+✅📌 The McdWithdraw.sol contract uses solidity compiler version 0.7.6 which is prone to overflow and underflow.
+
+✅📌 While calculating the rate in the getSellRate function, The decimal of Token is subtracted from 18. But if the token has more decimals than 18, It can result in broken code flow and underflow.
+
+
+
+💡Recommended Mitigation Steps:
+Make sure the code won’t fail in case the token’s decimals are more than 18.
+
+
+📚Reference:
+https://lnkd.in/dXmmGTMh
