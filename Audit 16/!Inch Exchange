@@ -1,0 +1,17 @@
+🔎 Audit Finding: Cannot unpause exchange
+🎯 Project Name: 1Inch Exchange
+🔥 Severity: Medium
+🛡️ Auditor: Openzeppelin
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 The OneInchExchange.sol contract exposes a mechanism for the owner to pause the contract. This disables the swap functionality.
+
+📌 But the problem is that there is no corresponding mechanism to unpause the contract. This can be problematic and can shutdown the swap functionality permanently.
+
+
+💡Recommended Mitigation Steps:
+Consider introducing a mechanism for the owner to unpause the contract. if the current behavior is expected, consider renaming the pause function to shutdown.
