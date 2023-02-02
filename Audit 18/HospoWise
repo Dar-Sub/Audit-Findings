@@ -1,0 +1,23 @@
+🔎 Attack Method: Lack of Access control over burn function
+🎯 Project Name: HospoWise
+🔥 Severity: Critical
+🧵 Attack Type: Access Control Issue
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 Hospowise was hacked due to an access control flaw, i.e. the burn function was public and was accessible to any user. See Line 1348–1350
+https://lnkd.in/dkk8za6N
+
+📌 An attacker purchased the tokens and then used the public burn function to burn all the hospo tokens on UniSwap, inflating the token's value, and then finally swapped it for ETH until the pool was depleted.
+
+📌 The protocol lost around $260K in this attack.
+
+
+💡Recommended Mitigation Steps:
+This might have been avoided if the function had implemented access control, such as onlyOwner, or if the function was internal with proper access control logic.
+
+📚Reference:
+https://lnkd.in/dVSjVF_r
