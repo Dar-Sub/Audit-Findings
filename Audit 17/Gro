@@ -1,0 +1,20 @@
+🔎 Audit Finding: Usage of deprecated ChainLink API
+🎯 Project Name: Gro
+🔥 Severity: Medium
+🛡️ Auditor: @Code4rena
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 According to Chainlink's documentation, the latestAnswer function is deprecated. The contracts of Gro protocol were using Chainlink’s deprecated API latestAnswer().
+
+📌 Such functions might suddenly stop working if Chainlink stopped supporting deprecated APIs.
+
+📌 If the Deprecated API stops working, Prices cannot be obtained and protocol stops and contracts have to be redeployed.
+
+
+
+💡Recommended Mitigation Steps:
+Use the latestRoundData function to get the price instead.
