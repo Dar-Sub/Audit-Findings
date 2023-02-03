@@ -1,0 +1,21 @@
+🔎 Exploit Finding: Bad Source of Randomness
+🎯 Project Name: LuckeyTiger NFT
+🔥 Severity: Critical
+
+Let's Start 👇👇
+
+
+🐞 The Vulnerability:
+
+📌 In LuckyTigerNFT's Contract, _getRandom function is used to generate random numbers, which is called in the mint function while minting NFT.
+
+📌The _getRandom function is using block.difficulty and block.timestamp for generating random numbers.
+
+📌Now, Due to bad randomness we can predict it and mint the NFT Infinite times.
+
+
+💡Recommended Mitigation Steps:
+Use Chainlink VRF to generate random numbers.
+
+📚Reference:
+https://lnkd.in/dZng5nNG
